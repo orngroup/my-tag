@@ -37,6 +37,7 @@ img{display:block;max-width:100%;}
 nav{flex:1;padding:12px;}
 .nav-item{display:flex;align-items:center;gap:11px;padding:11px 12px;border-radius:10px;font-size:13.5px;font-weight:600;color:var(--txd);margin-bottom:2px;}
 .nav-item:hover{background:var(--s3);color:var(--tx);}
+.nav-item.active-nav{background:var(--tag-lt);color:var(--tag-dk);}
 .nav-item .ic{font-size:16px;width:20px;text-align:center;}
 .sidebar-foot{padding:14px 18px;border-top:1px solid var(--bd);font-size:11.5px;color:var(--txm);}
 .sidebar-foot b{color:var(--txd);display:block;font-size:12.5px;}
@@ -50,6 +51,19 @@ nav{flex:1;padding:12px;}
 .page:target{display:block;}
 #profile{display:block;}
 .page:target ~ #profile{display:none;}
+/* JS-enhanced tab switching: when body has data-tab set, that section shows */
+body.js-on .page{display:none !important;}
+body.js-on .page.active{display:block !important;}
+
+/* expandable detail cards (offers / partners / events / competitions) */
+.xcard summary{cursor:pointer;list-style:none;}
+.xcard summary::-webkit-details-marker{display:none;}
+.xcard .reveal{display:inline-block;margin-top:12px;font-size:12.5px;font-weight:700;color:var(--tag-dk);}
+.xcard[open] .reveal{display:none;}
+.xdetail{margin-top:14px;padding-top:14px;border-top:1px solid var(--bd);}
+.xrow{display:flex;justify-content:space-between;gap:12px;padding:6px 0;border-bottom:1px solid var(--s3);font-size:12.5px;}
+.xrow b{color:var(--tx);}.xrow span{color:var(--txd);text-align:right;}
+.xnote{font-size:12.5px;color:var(--txd);line-height:1.55;margin:10px 0;}
 
 /* ---------- COMPONENTS ---------- */
 .card{background:var(--white);border:1px solid var(--bd);border-radius:14px;padding:18px 20px;margin-bottom:14px;}
@@ -124,58 +138,190 @@ nav{flex:1;padding:12px;}
     <div class="sidebar-foot"><b>Kerryn Collins</b>Apex Travel Co. · Virtuoso</div>
   </aside>
   <main id="main">
-    <section class="page" id="offers"><div class="page-head"><h1>Offers</h1></div><div class="card"><div class="sec-t">TAG Offers</div><div class="sec-s">Exclusive partner deals plus current Travel Answers packages — what you can sell right now.</div></div><div class="grid grid-3">
-      <div class="card"><div class="row-between"><span class="pill pill-orange">Maldives</span><span class="pill pill-gold">Honeymoon</span></div>
+    <section class="page" id="offers"><div class="page-head"><h1>Offers</h1></div><div class="card"><div class="sec-t">TAG Offers</div><div class="sec-s">Exclusive partner deals plus current Travel Answers packages — tap any offer to expand the details.</div></div><div class="grid grid-3">
+      <details class="card xcard"><summary><div class="row-between"><span class="pill pill-orange">Maldives</span><span class="pill pill-gold">Honeymoon</span></div>
         <div class="card-h">5th Night Free + Honeymoon Upgrade</div><div class="card-sub">Soneva Resorts · Aug 31, 2026</div>
-        <a class="btn btn-primary full" href="#offers">View Offer Details</a></div>
-      <div class="card"><div class="row-between"><span class="pill pill-orange">Japan</span><span class="pill pill-gold">Seasonal</span></div>
+        <span class="reveal">View Offer Details ▾</span></summary>
+        <div class="xdetail">
+          <div class="xrow"><b>Destination</b><span>Maldives</span></div>
+          <div class="xrow"><b>Partner</b><span>Soneva Resorts</span></div>
+          <div class="xrow"><b>Validity</b><span>Aug 31, 2026</span></div>
+          <div class="xrow"><b>Category</b><span>Honeymoon</span></div>
+          <p class="xnote">To book this offer for a client, log a quote in the booking platform or contact your TAG rep, Michael Brown, to hold an allotment. Eligible bookings earn TIER credit.</p>
+          <a class="btn btn-primary full" href="#messages">Message your TAG rep about this offer</a>
+        </div></details>
+      <details class="card xcard"><summary><div class="row-between"><span class="pill pill-orange">Japan</span><span class="pill pill-gold">Seasonal</span></div>
         <div class="card-h">Cherry Blossom Early-Bird — 15% Off</div><div class="card-sub">Hoshino Resorts · Sep 15, 2026</div>
-        <a class="btn btn-primary full" href="#offers">View Offer Details</a></div>
-      <div class="card"><div class="row-between"><span class="pill pill-orange">Dubai</span><span class="pill pill-gold">Family</span></div>
+        <span class="reveal">View Offer Details ▾</span></summary>
+        <div class="xdetail">
+          <div class="xrow"><b>Destination</b><span>Japan</span></div>
+          <div class="xrow"><b>Partner</b><span>Hoshino Resorts</span></div>
+          <div class="xrow"><b>Validity</b><span>Sep 15, 2026</span></div>
+          <div class="xrow"><b>Category</b><span>Seasonal</span></div>
+          <p class="xnote">To book this offer for a client, log a quote in the booking platform or contact your TAG rep, Michael Brown, to hold an allotment. Eligible bookings earn TIER credit.</p>
+          <a class="btn btn-primary full" href="#messages">Message your TAG rep about this offer</a>
+        </div></details>
+      <details class="card xcard"><summary><div class="row-between"><span class="pill pill-orange">Dubai</span><span class="pill pill-gold">Family</span></div>
         <div class="card-h">Kids Stay &amp; Eat Free, 4 Nights+</div><div class="card-sub">Atlantis The Palm · Jul 31, 2026</div>
-        <a class="btn btn-primary full" href="#offers">View Offer Details</a></div>
-      <div class="card"><div class="row-between"><span class="pill pill-orange">Italy</span><span class="pill pill-gold">From $5,916pp</span></div>
+        <span class="reveal">View Offer Details ▾</span></summary>
+        <div class="xdetail">
+          <div class="xrow"><b>Destination</b><span>Dubai</span></div>
+          <div class="xrow"><b>Partner</b><span>Atlantis The Palm</span></div>
+          <div class="xrow"><b>Validity</b><span>Jul 31, 2026</span></div>
+          <div class="xrow"><b>Category</b><span>Family</span></div>
+          <p class="xnote">To book this offer for a client, log a quote in the booking platform or contact your TAG rep, Michael Brown, to hold an allotment. Eligible bookings earn TIER credit.</p>
+          <a class="btn btn-primary full" href="#messages">Message your TAG rep about this offer</a>
+        </div></details>
+      <details class="card xcard"><summary><div class="row-between"><span class="pill pill-orange">Italy</span><span class="pill pill-gold">From $5,916pp</span></div>
         <div class="card-h">Icons of Italy — Rome, Florence &amp; Venice</div><div class="card-sub">Travel Answers Packages · Ongoing</div>
-        <a class="btn btn-primary full" href="#offers">View Offer Details</a></div>
-      <div class="card"><div class="row-between"><span class="pill pill-orange">Spain</span><span class="pill pill-gold">From $2,733pp</span></div>
+        <span class="reveal">View Offer Details ▾</span></summary>
+        <div class="xdetail">
+          <div class="xrow"><b>Destination</b><span>Italy</span></div>
+          <div class="xrow"><b>Partner</b><span>Travel Answers Packages</span></div>
+          <div class="xrow"><b>Validity</b><span>Ongoing</span></div>
+          <div class="xrow"><b>Category</b><span>From $5,916pp</span></div>
+          <p class="xnote">To book this offer for a client, log a quote in the booking platform or contact your TAG rep, Michael Brown, to hold an allotment. Eligible bookings earn TIER credit.</p>
+          <a class="btn btn-primary full" href="#messages">Message your TAG rep about this offer</a>
+        </div></details>
+      <details class="card xcard"><summary><div class="row-between"><span class="pill pill-orange">Spain</span><span class="pill pill-gold">From $2,733pp</span></div>
         <div class="card-h">Spain Discovery — Madrid &amp; Barcelona</div><div class="card-sub">Travel Answers Packages · Ongoing</div>
-        <a class="btn btn-primary full" href="#offers">View Offer Details</a></div>
-      <div class="card"><div class="row-between"><span class="pill pill-orange">United Kingdom</span><span class="pill pill-gold">From $1,877pp</span></div>
+        <span class="reveal">View Offer Details ▾</span></summary>
+        <div class="xdetail">
+          <div class="xrow"><b>Destination</b><span>Spain</span></div>
+          <div class="xrow"><b>Partner</b><span>Travel Answers Packages</span></div>
+          <div class="xrow"><b>Validity</b><span>Ongoing</span></div>
+          <div class="xrow"><b>Category</b><span>From $2,733pp</span></div>
+          <p class="xnote">To book this offer for a client, log a quote in the booking platform or contact your TAG rep, Michael Brown, to hold an allotment. Eligible bookings earn TIER credit.</p>
+          <a class="btn btn-primary full" href="#messages">Message your TAG rep about this offer</a>
+        </div></details>
+      <details class="card xcard"><summary><div class="row-between"><span class="pill pill-orange">United Kingdom</span><span class="pill pill-gold">From $1,877pp</span></div>
         <div class="card-h">UK Highlights — London, Cotswolds &amp; Stonehenge</div><div class="card-sub">Travel Answers Packages · Ongoing</div>
-        <a class="btn btn-primary full" href="#offers">View Offer Details</a></div>
-      <div class="card"><div class="row-between"><span class="pill pill-orange">France</span><span class="pill pill-gold">From $3,689pp</span></div>
+        <span class="reveal">View Offer Details ▾</span></summary>
+        <div class="xdetail">
+          <div class="xrow"><b>Destination</b><span>United Kingdom</span></div>
+          <div class="xrow"><b>Partner</b><span>Travel Answers Packages</span></div>
+          <div class="xrow"><b>Validity</b><span>Ongoing</span></div>
+          <div class="xrow"><b>Category</b><span>From $1,877pp</span></div>
+          <p class="xnote">To book this offer for a client, log a quote in the booking platform or contact your TAG rep, Michael Brown, to hold an allotment. Eligible bookings earn TIER credit.</p>
+          <a class="btn btn-primary full" href="#messages">Message your TAG rep about this offer</a>
+        </div></details>
+      <details class="card xcard"><summary><div class="row-between"><span class="pill pill-orange">France</span><span class="pill pill-gold">From $3,689pp</span></div>
         <div class="card-h">France Discovery — Paris &amp; Nice</div><div class="card-sub">Travel Answers Packages · Ongoing</div>
-        <a class="btn btn-primary full" href="#offers">View Offer Details</a></div>
-      <div class="card"><div class="row-between"><span class="pill pill-orange">Tahiti</span><span class="pill pill-gold">From $7,499pp</span></div>
+        <span class="reveal">View Offer Details ▾</span></summary>
+        <div class="xdetail">
+          <div class="xrow"><b>Destination</b><span>France</span></div>
+          <div class="xrow"><b>Partner</b><span>Travel Answers Packages</span></div>
+          <div class="xrow"><b>Validity</b><span>Ongoing</span></div>
+          <div class="xrow"><b>Category</b><span>From $3,689pp</span></div>
+          <p class="xnote">To book this offer for a client, log a quote in the booking platform or contact your TAG rep, Michael Brown, to hold an allotment. Eligible bookings earn TIER credit.</p>
+          <a class="btn btn-primary full" href="#messages">Message your TAG rep about this offer</a>
+        </div></details>
+      <details class="card xcard"><summary><div class="row-between"><span class="pill pill-orange">Tahiti</span><span class="pill pill-gold">From $7,499pp</span></div>
         <div class="card-h">Tahiti &amp; Bora Bora — Two Islands, Two Hearts</div><div class="card-sub">Travel Answers Packages · Ongoing</div>
-        <a class="btn btn-primary full" href="#offers">View Offer Details</a></div>
-      <div class="card"><div class="row-between"><span class="pill pill-orange">Tahiti</span><span class="pill pill-gold">From $3,299pp</span></div>
+        <span class="reveal">View Offer Details ▾</span></summary>
+        <div class="xdetail">
+          <div class="xrow"><b>Destination</b><span>Tahiti</span></div>
+          <div class="xrow"><b>Partner</b><span>Travel Answers Packages</span></div>
+          <div class="xrow"><b>Validity</b><span>Ongoing</span></div>
+          <div class="xrow"><b>Category</b><span>From $7,499pp</span></div>
+          <p class="xnote">To book this offer for a client, log a quote in the booking platform or contact your TAG rep, Michael Brown, to hold an allotment. Eligible bookings earn TIER credit.</p>
+          <a class="btn btn-primary full" href="#messages">Message your TAG rep about this offer</a>
+        </div></details>
+      <details class="card xcard"><summary><div class="row-between"><span class="pill pill-orange">Tahiti</span><span class="pill pill-gold">From $3,299pp</span></div>
         <div class="card-h">Magical Moorea — 6 Nights, Sofitel Kia Ora</div><div class="card-sub">Travel Answers Packages · Ongoing</div>
-        <a class="btn btn-primary full" href="#offers">View Offer Details</a></div>
-      <div class="card"><div class="row-between"><span class="pill pill-orange">Australia</span><span class="pill pill-gold">From $6,999pp</span></div>
+        <span class="reveal">View Offer Details ▾</span></summary>
+        <div class="xdetail">
+          <div class="xrow"><b>Destination</b><span>Tahiti</span></div>
+          <div class="xrow"><b>Partner</b><span>Travel Answers Packages</span></div>
+          <div class="xrow"><b>Validity</b><span>Ongoing</span></div>
+          <div class="xrow"><b>Category</b><span>From $3,299pp</span></div>
+          <p class="xnote">To book this offer for a client, log a quote in the booking platform or contact your TAG rep, Michael Brown, to hold an allotment. Eligible bookings earn TIER credit.</p>
+          <a class="btn btn-primary full" href="#messages">Message your TAG rep about this offer</a>
+        </div></details>
+      <details class="card xcard"><summary><div class="row-between"><span class="pill pill-orange">Australia</span><span class="pill pill-gold">From $6,999pp</span></div>
         <div class="card-h">Roos, Reef &amp; Opera — Brisbane, Hamilton Island &amp; Sydney</div><div class="card-sub">Travel Answers Packages · Ongoing</div>
-        <a class="btn btn-primary full" href="#offers">View Offer Details</a></div>
-      <div class="card"><div class="row-between"><span class="pill pill-orange">Australia</span><span class="pill pill-gold">From $6,399pp</span></div>
+        <span class="reveal">View Offer Details ▾</span></summary>
+        <div class="xdetail">
+          <div class="xrow"><b>Destination</b><span>Australia</span></div>
+          <div class="xrow"><b>Partner</b><span>Travel Answers Packages</span></div>
+          <div class="xrow"><b>Validity</b><span>Ongoing</span></div>
+          <div class="xrow"><b>Category</b><span>From $6,999pp</span></div>
+          <p class="xnote">To book this offer for a client, log a quote in the booking platform or contact your TAG rep, Michael Brown, to hold an allotment. Eligible bookings earn TIER credit.</p>
+          <a class="btn btn-primary full" href="#messages">Message your TAG rep about this offer</a>
+        </div></details>
+      <details class="card xcard"><summary><div class="row-between"><span class="pill pill-orange">Australia</span><span class="pill pill-gold">From $6,399pp</span></div>
         <div class="card-h">Tropical Treasures — Gold Coast &amp; Cairns</div><div class="card-sub">Travel Answers Packages · Ongoing</div>
-        <a class="btn btn-primary full" href="#offers">View Offer Details</a></div>
-      <div class="card"><div class="row-between"><span class="pill pill-orange">Thailand</span><span class="pill pill-gold">Wellness</span></div>
+        <span class="reveal">View Offer Details ▾</span></summary>
+        <div class="xdetail">
+          <div class="xrow"><b>Destination</b><span>Australia</span></div>
+          <div class="xrow"><b>Partner</b><span>Travel Answers Packages</span></div>
+          <div class="xrow"><b>Validity</b><span>Ongoing</span></div>
+          <div class="xrow"><b>Category</b><span>From $6,399pp</span></div>
+          <p class="xnote">To book this offer for a client, log a quote in the booking platform or contact your TAG rep, Michael Brown, to hold an allotment. Eligible bookings earn TIER credit.</p>
+          <a class="btn btn-primary full" href="#messages">Message your TAG rep about this offer</a>
+        </div></details>
+      <details class="card xcard"><summary><div class="row-between"><span class="pill pill-orange">Thailand</span><span class="pill pill-gold">Wellness</span></div>
         <div class="card-h">Complimentary Spa Credit, $200pp</div><div class="card-sub">Anantara Resorts · Aug 20, 2026</div>
-        <a class="btn btn-primary full" href="#offers">View Offer Details</a></div>
-      <div class="card"><div class="row-between"><span class="pill pill-orange">Bali</span><span class="pill pill-gold">Honeymoon</span></div>
+        <span class="reveal">View Offer Details ▾</span></summary>
+        <div class="xdetail">
+          <div class="xrow"><b>Destination</b><span>Thailand</span></div>
+          <div class="xrow"><b>Partner</b><span>Anantara Resorts</span></div>
+          <div class="xrow"><b>Validity</b><span>Aug 20, 2026</span></div>
+          <div class="xrow"><b>Category</b><span>Wellness</span></div>
+          <p class="xnote">To book this offer for a client, log a quote in the booking platform or contact your TAG rep, Michael Brown, to hold an allotment. Eligible bookings earn TIER credit.</p>
+          <a class="btn btn-primary full" href="#messages">Message your TAG rep about this offer</a>
+        </div></details>
+      <details class="card xcard"><summary><div class="row-between"><span class="pill pill-orange">Bali</span><span class="pill pill-gold">Honeymoon</span></div>
         <div class="card-h">Private Villa, 4th Night Free</div><div class="card-sub">Alila Hotels · Sep 30, 2026</div>
-        <a class="btn btn-primary full" href="#offers">View Offer Details</a></div></div></section><section class="page" id="partners"><div class="page-head"><h1>TAG Partners</h1></div><div class="card"><div class="sec-t">TAG Partners</div><div class="sec-s">Tourism boards and hotel groups partnered exclusively with TAG — deals your clients can't find elsewhere.</div></div><div class="grid grid-2">
-      <div class="card"><span class="pill pill-gold">Featured</span>
+        <span class="reveal">View Offer Details ▾</span></summary>
+        <div class="xdetail">
+          <div class="xrow"><b>Destination</b><span>Bali</span></div>
+          <div class="xrow"><b>Partner</b><span>Alila Hotels</span></div>
+          <div class="xrow"><b>Validity</b><span>Sep 30, 2026</span></div>
+          <div class="xrow"><b>Category</b><span>Honeymoon</span></div>
+          <p class="xnote">To book this offer for a client, log a quote in the booking platform or contact your TAG rep, Michael Brown, to hold an allotment. Eligible bookings earn TIER credit.</p>
+          <a class="btn btn-primary full" href="#messages">Message your TAG rep about this offer</a>
+        </div></details></div></section><section class="page" id="partners"><div class="page-head"><h1>TAG Partners</h1></div><div class="card"><div class="sec-t">TAG Partners</div><div class="sec-s">Tourism boards and hotel groups partnered exclusively with TAG — tap any partner to see the deal.</div></div><div class="grid grid-2">
+      <details class="card xcard"><summary><span class="pill pill-gold">Featured</span>
         <div class="card-h">Tourism Australia</div><div class="card-sub">Tourism Board</div><div class="card-body">Exclusive agent fam-trip allocation + co-op marketing fund</div>
-        <a class="btn full" href="#partners">See Partner Deals</a></div>
-      <div class="card"><span class="pill pill-gold">Featured</span>
+        <span class="reveal">See Partner Deals ▾</span></summary>
+        <div class="xdetail">
+          <div class="xrow"><b>Partner</b><span>Tourism Australia</span></div>
+          <div class="xrow"><b>Type</b><span>Tourism Board</span></div>
+          <div class="xrow"><b>TAG-exclusive benefit</b><span>Exclusive agent fam-trip allocation + co-op marketing fund</span></div>
+          <p class="xnote">This partner offers dedicated rates and perks for TAG advisors. Reach out to your TAG rep to access booking codes, fam-trip allocations, and co-op marketing support.</p>
+          <a class="btn btn-primary full" href="#messages">Request Tourism Australia booking access</a>
+        </div></details>
+      <details class="card xcard"><summary><span class="pill pill-gold">Featured</span>
         <div class="card-h">Atlantis Resorts</div><div class="card-sub">Hotel Group</div><div class="card-body">Guaranteed upgrades + dedicated TAG booking line</div>
-        <a class="btn full" href="#partners">See Partner Deals</a></div>
-      <div class="card"><span class="pill pill-blue">New Partner</span>
+        <span class="reveal">See Partner Deals ▾</span></summary>
+        <div class="xdetail">
+          <div class="xrow"><b>Partner</b><span>Atlantis Resorts</span></div>
+          <div class="xrow"><b>Type</b><span>Hotel Group</span></div>
+          <div class="xrow"><b>TAG-exclusive benefit</b><span>Guaranteed upgrades + dedicated TAG booking line</span></div>
+          <p class="xnote">This partner offers dedicated rates and perks for TAG advisors. Reach out to your TAG rep to access booking codes, fam-trip allocations, and co-op marketing support.</p>
+          <a class="btn btn-primary full" href="#messages">Request Atlantis Resorts booking access</a>
+        </div></details>
+      <details class="card xcard"><summary><span class="pill pill-blue">New Partner</span>
         <div class="card-h">Visit Japan</div><div class="card-sub">Tourism Board</div><div class="card-body">Early access to cherry blossom season allotments</div>
-        <a class="btn full" href="#partners">See Partner Deals</a></div>
-      <div class="card"><span class="pill pill-gold">Featured</span>
+        <span class="reveal">See Partner Deals ▾</span></summary>
+        <div class="xdetail">
+          <div class="xrow"><b>Partner</b><span>Visit Japan</span></div>
+          <div class="xrow"><b>Type</b><span>Tourism Board</span></div>
+          <div class="xrow"><b>TAG-exclusive benefit</b><span>Early access to cherry blossom season allotments</span></div>
+          <p class="xnote">This partner offers dedicated rates and perks for TAG advisors. Reach out to your TAG rep to access booking codes, fam-trip allocations, and co-op marketing support.</p>
+          <a class="btn btn-primary full" href="#messages">Request Visit Japan booking access</a>
+        </div></details>
+      <details class="card xcard"><summary><span class="pill pill-gold">Featured</span>
         <div class="card-h">Belmond</div><div class="card-sub">Luxury Hotel Group</div><div class="card-body">Agent-only suite upgrades on all Italy properties</div>
-        <a class="btn full" href="#partners">See Partner Deals</a></div></div></section><section class="page" id="wiki"><div class="page-head"><h1>Destination Wiki</h1></div><div class="card"><div class="sec-t">Destination Wiki</div><div class="sec-s">Sell sheets for every TAG destination — tap any destination to expand. Flights from major US gateways, visa rules for US passport holders, and the pitch.</div></div>
+        <span class="reveal">See Partner Deals ▾</span></summary>
+        <div class="xdetail">
+          <div class="xrow"><b>Partner</b><span>Belmond</span></div>
+          <div class="xrow"><b>Type</b><span>Luxury Hotel Group</span></div>
+          <div class="xrow"><b>TAG-exclusive benefit</b><span>Agent-only suite upgrades on all Italy properties</span></div>
+          <p class="xnote">This partner offers dedicated rates and perks for TAG advisors. Reach out to your TAG rep to access booking codes, fam-trip allocations, and co-op marketing support.</p>
+          <a class="btn btn-primary full" href="#messages">Request Belmond booking access</a>
+        </div></details></div></section><section class="page" id="wiki"><div class="page-head"><h1>Destination Wiki</h1></div><div class="card"><div class="sec-t">Destination Wiki</div><div class="sec-s">Sell sheets for every TAG destination — tap any destination to expand. Flights from major US gateways, visa rules for US passport holders, and the pitch.</div></div>
         <details class="card dest"><summary><span class="dest-emoji">🇦🇺</span><span class="dest-name">Australia</span><span class="dest-region">Pacific</span></summary>
           <p class="dest-overview">Australia delivers staggering scale — the Great Barrier Reef, Sydney&#x27;s harbour icons, Outback red-earth horizons, and laid-back coastal cities — in a country roughly the size of the contiguous US. Long-haul but worth every hour: this is a true bucket-list, multi-week itinerary destination for American travelers.</p>
           <div class="dest-h">⭐ Why Sell This Destination</div><ul class="why"><li>Direct nonstop service from multiple US gateways — no more brutal multi-stop routings</li><li>English-speaking, easy logistics, time zone makes it ideal for a 2-3 week itinerary</li><li>Massive variety: reef diving, wine country, Outback, world-class cities in one trip</li><li>Strong USD-to-AUD value compared to Europe</li><li>Family-friendly with huge wow-factor</li></ul>
@@ -707,42 +853,160 @@ nav{flex:1;padding:12px;}
       <div class="tier-row"><div><div class="tier-lbl">Current Tier</div><div class="tier-val tag-c">Silver</div></div>
       <div><div class="tier-lbl">TIER Credit</div><div class="tier-val">$340</div></div>
       <div><div class="tier-lbl">Next Tier</div><div class="tier-val">Gold @ $1,000</div></div></div></div>
-    <div class="card"><div class="sec-t">Competitions &amp; Rewards</div><div class="sec-s">Prize draws, bonus-credit challenges, and referral rewards — a little extra for being a TAG partner.</div></div>
+    <div class="card"><div class="sec-t">Competitions &amp; Rewards</div><div class="sec-s">Prize draws, bonus-credit challenges, and referral rewards — tap any to see how to enter.</div></div>
     <div class="grid grid-2">
-      <div class="card"><div class="row-between"><span class="pill pill-green">Live</span><span class="muted-sm">Ends Dec 31, 2026</span></div>
+      <details class="card xcard"><summary><div class="row-between"><span class="pill pill-green">Live</span><span class="muted-sm">Ends Dec 31, 2026</span></div>
         <div class="card-h">Q4 Sell-a-thon: Bonus TIER Multiplier</div><div class="card-body">Every eligible booking this quarter earns 2x TIER credit automatically — no entry needed.</div><div class="prize"><b>Prize:</b> 2x TIER credit on all bookings</div>
-        <a class="btn btn-primary full" href="#competitions">Start a Quote</a></div>
-      <div class="card"><div class="row-between"><span class="pill pill-green">Live</span><span class="muted-sm">Ends Ongoing</span></div>
+        <span class="reveal">Start a Quote ▾</span></summary>
+        <div class="xdetail">
+          <div class="xrow"><b>Status</b><span>Live</span></div>
+          <div class="xrow"><b>Closes</b><span>Dec 31, 2026</span></div>
+          <div class="xrow"><b>Prize</b><span>2x TIER credit on all bookings</span></div>
+          <p class="xnote">Every eligible booking this quarter earns 2x TIER credit automatically — no entry needed. Entry is tracked automatically through your booking activity where applicable. Questions? Your TAG rep can walk you through it.</p>
+          <a class="btn btn-primary full" href="#messages">Ask about this competition</a>
+        </div></details>
+      <details class="card xcard"><summary><div class="row-between"><span class="pill pill-green">Live</span><span class="muted-sm">Ends Ongoing</span></div>
         <div class="card-h">Refer an Advisor</div><div class="card-body">Refer an advisor — once they register and complete their first eligible booking, you both earn bonus TIER credit.</div><div class="prize"><b>Prize:</b> Bonus TIER credit for you and your referral</div>
-        <a class="btn btn-primary full" href="#competitions">Refer an Advisor</a></div>
-      <div class="card"><div class="row-between"><span class="pill pill-green">Live</span><span class="muted-sm">Ends Sep 30, 2026</span></div>
+        <span class="reveal">Refer an Advisor ▾</span></summary>
+        <div class="xdetail">
+          <div class="xrow"><b>Status</b><span>Live</span></div>
+          <div class="xrow"><b>Closes</b><span>Ongoing</span></div>
+          <div class="xrow"><b>Prize</b><span>Bonus TIER credit for you and your referral</span></div>
+          <p class="xnote">Refer an advisor — once they register and complete their first eligible booking, you both earn bonus TIER credit. Entry is tracked automatically through your booking activity where applicable. Questions? Your TAG rep can walk you through it.</p>
+          <a class="btn btn-primary full" href="#messages">Ask about this competition</a>
+        </div></details>
+      <details class="card xcard"><summary><div class="row-between"><span class="pill pill-green">Live</span><span class="muted-sm">Ends Sep 30, 2026</span></div>
         <div class="card-h">First Booking Bonus Draw</div><div class="card-body">Every advisor who completes their first booking through the new platform this quarter is entered into a draw for a complimentary 3-night stay.</div><div class="prize"><b>Prize:</b> 3-night stay, winner announced Oct 5</div>
-        <a class="btn btn-primary full" href="#competitions">Make Your First Booking</a></div>
-      <div class="card"><div class="row-between"><span class="pill pill-blue">Opens Aug 1</span><span class="muted-sm">Ends Oct 15, 2026</span></div>
+        <span class="reveal">Make Your First Booking ▾</span></summary>
+        <div class="xdetail">
+          <div class="xrow"><b>Status</b><span>Live</span></div>
+          <div class="xrow"><b>Closes</b><span>Sep 30, 2026</span></div>
+          <div class="xrow"><b>Prize</b><span>3-night stay, winner announced Oct 5</span></div>
+          <p class="xnote">Every advisor who completes their first booking through the new platform this quarter is entered into a draw for a complimentary 3-night stay. Entry is tracked automatically through your booking activity where applicable. Questions? Your TAG rep can walk you through it.</p>
+          <a class="btn btn-primary full" href="#messages">Ask about this competition</a>
+        </div></details>
+      <details class="card xcard"><summary><div class="row-between"><span class="pill pill-blue">Opens Aug 1</span><span class="muted-sm">Ends Oct 15, 2026</span></div>
         <div class="card-h">Maldives Dream Trip Giveaway</div><div class="card-body">Submit your best client proposal built with the branded proposal tool. Top 3 most-booked itineraries win a personal Maldives trip.</div><div class="prize"><b>Prize:</b> Personal Maldives trip for 2</div>
-        <a class="btn btn-primary full" href="#competitions">Notify Me When Live</a></div></div></section><section class="page" id="facts"><div class="page-head"><h1>Did You Know</h1></div><div class="card"><div class="sec-t">Did You Know</div><div class="sec-s">Travel facts to drop into a client conversation or proposal note.</div></div><div class="card fact">💡 Japan&#x27;s bullet trains have an average delay of under a minute a year — across the entire network.</div><div class="card fact">💡 The Maldives is the lowest-lying country on Earth, averaging just 4 feet 11 inches above sea level.</div><div class="card fact">💡 Singapore&#x27;s Changi Airport has a butterfly garden, a 40-foot indoor waterfall, and a rooftop pool — inside the terminals.</div><div class="card fact">💡 Bhutan is the only carbon-negative country in the world — its forests absorb more carbon than the country emits.</div><div class="card fact">💡 Thailand was never colonized by a European power — its name translates to &#x27;Land of the Free.&#x27;</div><div class="card fact">💡 New Zealand has more sheep than people — roughly 5 sheep for every 1 person.</div><div class="card fact">💡 Istanbul is the only major city in the world split across two continents, Europe and Asia.</div><div class="card fact">💡 The Great Barrier Reef is the only living structure on Earth visible from space, stretching over 1,400 miles.</div><div class="card fact">💡 Amsterdam has more bicycles than residents — around 880,000 bikes for about 870,000 people.</div><div class="card fact">💡 Bali has more temples than any other place on Earth — locals say more temples than homes.</div></section><section class="page" id="messages"><div class="page-head"><h1>Messages</h1></div><div class="card"><div class="sec-t">Messages</div><div class="sec-s">Personal notes from your TAG team — not a mass blast.</div></div><div class="card msg"><div class="avatar">TH</div><div class="msg-body"><div class="row-between"><b>TAG HQ <span class="muted">· Congratulations 🎉</span></b><span class="muted-sm">1 hr ago</span></div><div class="msg-text">Your booking for the Hendricks family Bali trip just came through — congrats! That&#x27;s TIER credit landing in your account within 5 business days.</div></div></div><div class="card msg"><div class="avatar">MB</div><div class="msg-body"><div class="row-between"><b>Michael Brown <span class="muted">· Your TAG Rep</span></b><span class="muted-sm">2 hrs ago</span></div><div class="msg-text">Hi Kerryn — saw your client&#x27;s Maldives inquiry. Soneva just released a 5th-night-free promo, perfect timing. Want me to hold an allotment?</div></div></div><div class="card msg"><div class="avatar">TH</div><div class="msg-body"><div class="row-between"><b>TAG HQ <span class="muted">· Trip Plan Reminder</span></b><span class="muted-sm">This morning</span></div><div class="msg-text">Your Japan itinerary for the Park family is still saved as a draft — want a hand finishing it, or shall we connect a Destination Specialist?</div></div></div><div class="card msg"><div class="avatar">TH</div><div class="msg-body"><div class="row-between"><b>TAG HQ <span class="muted">· Announcement</span></b><span class="muted-sm">Yesterday</span></div><div class="msg-text">New Japan cherry blossom allotments just went live in Offers — limited inventory for Virtuoso partners.</div></div></div><div class="card msg"><div class="avatar">JH</div><div class="msg-body"><div class="row-between"><b>Janie Hall <span class="muted">· Ensemble Relations</span></b><span class="muted-sm">3 days ago</span></div><div class="msg-text">Loved seeing you at the Orange County roadshow! Your FAM trip seat for Bali in September is confirmed.</div></div></div></section><section class="page" id="contacts"><div class="page-head"><h1>Contacts</h1></div><div class="card tier-card"><div class="sec-t">Your TAG Rep</div>
+        <span class="reveal">Notify Me When Live ▾</span></summary>
+        <div class="xdetail">
+          <div class="xrow"><b>Status</b><span>Opens Aug 1</span></div>
+          <div class="xrow"><b>Closes</b><span>Oct 15, 2026</span></div>
+          <div class="xrow"><b>Prize</b><span>Personal Maldives trip for 2</span></div>
+          <p class="xnote">Submit your best client proposal built with the branded proposal tool. Top 3 most-booked itineraries win a personal Maldives trip. Entry is tracked automatically through your booking activity where applicable. Questions? Your TAG rep can walk you through it.</p>
+          <a class="btn btn-primary full" href="#messages">Ask about this competition</a>
+        </div></details></div></section><section class="page" id="facts"><div class="page-head"><h1>Did You Know</h1></div><div class="card"><div class="sec-t">Did You Know</div><div class="sec-s">Travel facts to drop into a client conversation or proposal note.</div></div><div class="card fact">💡 Japan&#x27;s bullet trains have an average delay of under a minute a year — across the entire network.</div><div class="card fact">💡 The Maldives is the lowest-lying country on Earth, averaging just 4 feet 11 inches above sea level.</div><div class="card fact">💡 Singapore&#x27;s Changi Airport has a butterfly garden, a 40-foot indoor waterfall, and a rooftop pool — inside the terminals.</div><div class="card fact">💡 Bhutan is the only carbon-negative country in the world — its forests absorb more carbon than the country emits.</div><div class="card fact">💡 Thailand was never colonized by a European power — its name translates to &#x27;Land of the Free.&#x27;</div><div class="card fact">💡 New Zealand has more sheep than people — roughly 5 sheep for every 1 person.</div><div class="card fact">💡 Istanbul is the only major city in the world split across two continents, Europe and Asia.</div><div class="card fact">💡 The Great Barrier Reef is the only living structure on Earth visible from space, stretching over 1,400 miles.</div><div class="card fact">💡 Amsterdam has more bicycles than residents — around 880,000 bikes for about 870,000 people.</div><div class="card fact">💡 Bali has more temples than any other place on Earth — locals say more temples than homes.</div></section><section class="page" id="messages"><div class="page-head"><h1>Messages</h1></div><div class="card"><div class="sec-t">Messages</div><div class="sec-s">Personal notes from your TAG team — not a mass blast.</div></div><div class="card msg"><div class="avatar">TH</div><div class="msg-body"><div class="row-between"><b>TAG HQ <span class="muted">· Congratulations 🎉</span></b><span class="muted-sm">1 hr ago</span></div><div class="msg-text">Your booking for the Hendricks family Bali trip just came through — congrats! That&#x27;s TIER credit landing in your account within 5 business days.</div></div></div><div class="card msg"><div class="avatar">MB</div><div class="msg-body"><div class="row-between"><b>Michael Brown <span class="muted">· Your TAG Rep</span></b><span class="muted-sm">2 hrs ago</span></div><div class="msg-text">Hi Kerryn — saw your client&#x27;s Maldives inquiry. Soneva just released a 5th-night-free promo, perfect timing. Want me to hold an allotment?</div></div></div><div class="card msg"><div class="avatar">TH</div><div class="msg-body"><div class="row-between"><b>TAG HQ <span class="muted">· Trip Plan Reminder</span></b><span class="muted-sm">This morning</span></div><div class="msg-text">Your Japan itinerary for the Park family is still saved as a draft — want a hand finishing it, or shall we connect a Destination Specialist?</div></div></div><div class="card msg"><div class="avatar">TH</div><div class="msg-body"><div class="row-between"><b>TAG HQ <span class="muted">· Announcement</span></b><span class="muted-sm">Yesterday</span></div><div class="msg-text">New Japan cherry blossom allotments just went live in Offers — limited inventory for Virtuoso partners.</div></div></div><div class="card msg"><div class="avatar">JH</div><div class="msg-body"><div class="row-between"><b>Janie Hall <span class="muted">· Ensemble Relations</span></b><span class="muted-sm">3 days ago</span></div><div class="msg-text">Loved seeing you at the Orange County roadshow! Your FAM trip seat for Bali in September is confirmed.</div></div></div></section><section class="page" id="contacts"><div class="page-head"><h1>Contacts</h1></div><div class="card tier-card"><div class="sec-t">Your TAG Rep</div>
       <div class="rep"><div class="avatar big">MB</div><div><div class="rep-n">Michael Brown</div><div class="rep-e">Travel Leaders / Signature / Virtuoso · michael.brown@tagusa.com</div></div></div></div>
-    <div class="card"><div class="sec-t">Consortia Ownership Directory</div><div class="sec-s">Every consortia relationship is owned by a dedicated TAG rep.</div></div><div class="card contact"><div><b>Michael Brown</b><div class="muted-sm">Travel Leaders / Signature / Virtuoso</div></div><span class="muted-sm">michael.brown@tagusa.com</span></div><div class="card contact"><div><b>John Gunning</b><div class="muted-sm">Cruise Planners / WESTA / MAST / AAA</div></div><span class="muted-sm">john.gunning@tagusa.com</span></div><div class="card contact"><div><b>Janie Hall</b><div class="muted-sm">Ensemble</div></div><span class="muted-sm">janie.hall@tagusa.com</span></div></section><section class="page" id="events"><div class="page-head"><h1>TAG Events</h1></div><div class="card"><div class="sec-t">Upcoming Events</div><div class="sec-s">Roadshows, webinars, and FAM trips — RSVP directly.</div></div><div class="grid grid-3"><div class="card"><div class="row-between"><span class="pill pill-orange">In-person</span><span class="pill pill-gold">12 of 60 seats left</span></div>
+    <div class="card"><div class="sec-t">Consortia Ownership Directory</div><div class="sec-s">Every consortia relationship is owned by a dedicated TAG rep.</div></div><div class="card contact"><div><b>Michael Brown</b><div class="muted-sm">Travel Leaders / Signature / Virtuoso</div></div><span class="muted-sm">michael.brown@tagusa.com</span></div><div class="card contact"><div><b>John Gunning</b><div class="muted-sm">Cruise Planners / WESTA / MAST / AAA</div></div><span class="muted-sm">john.gunning@tagusa.com</span></div><div class="card contact"><div><b>Janie Hall</b><div class="muted-sm">Ensemble</div></div><span class="muted-sm">janie.hall@tagusa.com</span></div></section><section class="page" id="events"><div class="page-head"><h1>TAG Events</h1></div><div class="card"><div class="sec-t">Upcoming Events</div><div class="sec-s">Roadshows, webinars, and FAM trips — tap any event to RSVP.</div></div><div class="grid grid-3"><details class="card xcard"><summary><div class="row-between"><span class="pill pill-orange">In-person</span><span class="pill pill-gold">12 of 60 seats left</span></div>
           <div class="card-h">TAG Roadshow — Orange County</div><div class="card-sub">📅 Aug 14, 2026 · 📍 Newport Beach, CA</div><div class="card-body">Includes: Lunch, partner expo, book-live-and-earn rewards</div>
-          <a class="btn btn-primary full" href="#events">RSVP / Apply to Attend</a></div><div class="card"><div class="row-between"><span class="pill pill-orange">In-person</span><span class="pill pill-gold">28 of 60 seats left</span></div>
+          <span class="reveal">RSVP / Apply to Attend ▾</span></summary>
+          <div class="xdetail">
+            <div class="xrow"><b>Date</b><span>Aug 14, 2026</span></div>
+            <div class="xrow"><b>Location</b><span>Newport Beach, CA</span></div>
+            <div class="xrow"><b>Format</b><span>In-person</span></div>
+            <div class="xrow"><b>Availability</b><span>12 of 60 seats left</span></div>
+            <div class="xrow"><b>Includes</b><span>Lunch, partner expo, book-live-and-earn rewards</span></div>
+            <p class="xnote">To reserve your place, confirm with your TAG rep or reply to your latest TAG event invitation. Seats for in-person events are limited and allocated first-come, first-served.</p>
+            <a class="btn btn-primary full" href="#messages">Request a place at this event</a>
+          </div></details><details class="card xcard"><summary><div class="row-between"><span class="pill pill-orange">In-person</span><span class="pill pill-gold">28 of 60 seats left</span></div>
           <div class="card-h">TAG Roadshow — Dallas</div><div class="card-sub">📅 Aug 21, 2026 · 📍 Dallas, TX</div><div class="card-body">Includes: Lunch, partner expo, book-live-and-earn rewards</div>
-          <a class="btn btn-primary full" href="#events">RSVP / Apply to Attend</a></div><div class="card"><div class="row-between"><span class="pill pill-orange">In-person</span><span class="pill pill-gold">41 of 60 seats left</span></div>
+          <span class="reveal">RSVP / Apply to Attend ▾</span></summary>
+          <div class="xdetail">
+            <div class="xrow"><b>Date</b><span>Aug 21, 2026</span></div>
+            <div class="xrow"><b>Location</b><span>Dallas, TX</span></div>
+            <div class="xrow"><b>Format</b><span>In-person</span></div>
+            <div class="xrow"><b>Availability</b><span>28 of 60 seats left</span></div>
+            <div class="xrow"><b>Includes</b><span>Lunch, partner expo, book-live-and-earn rewards</span></div>
+            <p class="xnote">To reserve your place, confirm with your TAG rep or reply to your latest TAG event invitation. Seats for in-person events are limited and allocated first-come, first-served.</p>
+            <a class="btn btn-primary full" href="#messages">Request a place at this event</a>
+          </div></details><details class="card xcard"><summary><div class="row-between"><span class="pill pill-orange">In-person</span><span class="pill pill-gold">41 of 60 seats left</span></div>
           <div class="card-h">TAG Roadshow — Boston</div><div class="card-sub">📅 Sep 11, 2026 · 📍 Boston, MA</div><div class="card-body">Includes: Lunch, partner expo, book-live-and-earn rewards</div>
-          <a class="btn btn-primary full" href="#events">RSVP / Apply to Attend</a></div><div class="card"><div class="row-between"><span class="pill pill-blue">Virtual</span></div>
+          <span class="reveal">RSVP / Apply to Attend ▾</span></summary>
+          <div class="xdetail">
+            <div class="xrow"><b>Date</b><span>Sep 11, 2026</span></div>
+            <div class="xrow"><b>Location</b><span>Boston, MA</span></div>
+            <div class="xrow"><b>Format</b><span>In-person</span></div>
+            <div class="xrow"><b>Availability</b><span>41 of 60 seats left</span></div>
+            <div class="xrow"><b>Includes</b><span>Lunch, partner expo, book-live-and-earn rewards</span></div>
+            <p class="xnote">To reserve your place, confirm with your TAG rep or reply to your latest TAG event invitation. Seats for in-person events are limited and allocated first-come, first-served.</p>
+            <a class="btn btn-primary full" href="#messages">Request a place at this event</a>
+          </div></details><details class="card xcard"><summary><div class="row-between"><span class="pill pill-blue">Virtual</span></div>
           <div class="card-h">Japan Cherry Blossom Webinar</div><div class="card-sub">📅 Aug 5, 2026 · 📍 Virtual</div><div class="card-body">Includes: Live Q&amp;A with Hoshino Resorts</div>
-          <a class="btn btn-primary full" href="#events">RSVP / Apply to Attend</a></div><div class="card"><div class="row-between"><span class="pill pill-blue">Virtual</span></div>
+          <span class="reveal">RSVP / Apply to Attend ▾</span></summary>
+          <div class="xdetail">
+            <div class="xrow"><b>Date</b><span>Aug 5, 2026</span></div>
+            <div class="xrow"><b>Location</b><span>Virtual</span></div>
+            <div class="xrow"><b>Format</b><span>Virtual</span></div>
+            <div class="xrow"><b>Availability</b><span>Open</span></div>
+            <div class="xrow"><b>Includes</b><span>Live Q&amp;A with Hoshino Resorts</span></div>
+            <p class="xnote">To reserve your place, confirm with your TAG rep or reply to your latest TAG event invitation. Seats for in-person events are limited and allocated first-come, first-served.</p>
+            <a class="btn btn-primary full" href="#messages">Request a place at this event</a>
+          </div></details><details class="card xcard"><summary><div class="row-between"><span class="pill pill-blue">Virtual</span></div>
           <div class="card-h">Mastering the New Booking Platform</div><div class="card-sub">📅 Aug 12, 2026 · 📍 Virtual</div><div class="card-body">Includes: Live walkthrough of quick quotes, itineraries &amp; proposals</div>
-          <a class="btn btn-primary full" href="#events">RSVP / Apply to Attend</a></div><div class="card"><div class="row-between"><span class="pill pill-blue">Virtual</span></div>
+          <span class="reveal">RSVP / Apply to Attend ▾</span></summary>
+          <div class="xdetail">
+            <div class="xrow"><b>Date</b><span>Aug 12, 2026</span></div>
+            <div class="xrow"><b>Location</b><span>Virtual</span></div>
+            <div class="xrow"><b>Format</b><span>Virtual</span></div>
+            <div class="xrow"><b>Availability</b><span>Open</span></div>
+            <div class="xrow"><b>Includes</b><span>Live walkthrough of quick quotes, itineraries &amp; proposals</span></div>
+            <p class="xnote">To reserve your place, confirm with your TAG rep or reply to your latest TAG event invitation. Seats for in-person events are limited and allocated first-come, first-served.</p>
+            <a class="btn btn-primary full" href="#messages">Request a place at this event</a>
+          </div></details><details class="card xcard"><summary><div class="row-between"><span class="pill pill-blue">Virtual</span></div>
           <div class="card-h">Selling the Gulf: Dubai &amp; Saudi Webinar</div><div class="card-sub">📅 Aug 26, 2026 · 📍 Virtual</div><div class="card-body">Includes: Partner specialists from Atlantis &amp; AlUla</div>
-          <a class="btn btn-primary full" href="#events">RSVP / Apply to Attend</a></div><div class="card"><div class="row-between"><span class="pill pill-orange">In-person</span><span class="pill pill-gold">2 of 8 seats left</span></div>
+          <span class="reveal">RSVP / Apply to Attend ▾</span></summary>
+          <div class="xdetail">
+            <div class="xrow"><b>Date</b><span>Aug 26, 2026</span></div>
+            <div class="xrow"><b>Location</b><span>Virtual</span></div>
+            <div class="xrow"><b>Format</b><span>Virtual</span></div>
+            <div class="xrow"><b>Availability</b><span>Open</span></div>
+            <div class="xrow"><b>Includes</b><span>Partner specialists from Atlantis &amp; AlUla</span></div>
+            <p class="xnote">To reserve your place, confirm with your TAG rep or reply to your latest TAG event invitation. Seats for in-person events are limited and allocated first-come, first-served.</p>
+            <a class="btn btn-primary full" href="#messages">Request a place at this event</a>
+          </div></details><details class="card xcard"><summary><div class="row-between"><span class="pill pill-orange">In-person</span><span class="pill pill-gold">2 of 8 seats left</span></div>
           <div class="card-h">Maldives FAM Trip</div><div class="card-sub">📅 Sep 22-27, 2026 · 📍 Soneva Fushi, Maldives</div><div class="card-body">Includes: Flights, accommodation, agent training</div>
-          <a class="btn btn-primary full" href="#events">RSVP / Apply to Attend</a></div><div class="card"><div class="row-between"><span class="pill pill-orange">In-person</span><span class="pill pill-gold">5 of 10 seats left</span></div>
+          <span class="reveal">RSVP / Apply to Attend ▾</span></summary>
+          <div class="xdetail">
+            <div class="xrow"><b>Date</b><span>Sep 22-27, 2026</span></div>
+            <div class="xrow"><b>Location</b><span>Soneva Fushi, Maldives</span></div>
+            <div class="xrow"><b>Format</b><span>In-person</span></div>
+            <div class="xrow"><b>Availability</b><span>2 of 8 seats left</span></div>
+            <div class="xrow"><b>Includes</b><span>Flights, accommodation, agent training</span></div>
+            <p class="xnote">To reserve your place, confirm with your TAG rep or reply to your latest TAG event invitation. Seats for in-person events are limited and allocated first-come, first-served.</p>
+            <a class="btn btn-primary full" href="#messages">Request a place at this event</a>
+          </div></details><details class="card xcard"><summary><div class="row-between"><span class="pill pill-orange">In-person</span><span class="pill pill-gold">5 of 10 seats left</span></div>
           <div class="card-h">Italy &amp; Amalfi Coast FAM Trip</div><div class="card-sub">📅 Oct 6-12, 2026 · 📍 Amalfi Coast, Italy</div><div class="card-body">Includes: Flights, accommodation, Belmond property tours</div>
-          <a class="btn btn-primary full" href="#events">RSVP / Apply to Attend</a></div><div class="card"><div class="row-between"><span class="pill pill-blue">Virtual</span></div>
+          <span class="reveal">RSVP / Apply to Attend ▾</span></summary>
+          <div class="xdetail">
+            <div class="xrow"><b>Date</b><span>Oct 6-12, 2026</span></div>
+            <div class="xrow"><b>Location</b><span>Amalfi Coast, Italy</span></div>
+            <div class="xrow"><b>Format</b><span>In-person</span></div>
+            <div class="xrow"><b>Availability</b><span>5 of 10 seats left</span></div>
+            <div class="xrow"><b>Includes</b><span>Flights, accommodation, Belmond property tours</span></div>
+            <p class="xnote">To reserve your place, confirm with your TAG rep or reply to your latest TAG event invitation. Seats for in-person events are limited and allocated first-come, first-served.</p>
+            <a class="btn btn-primary full" href="#messages">Request a place at this event</a>
+          </div></details><details class="card xcard"><summary><div class="row-between"><span class="pill pill-blue">Virtual</span></div>
           <div class="card-h">TIER Rewards Live Q&amp;A</div><div class="card-sub">📅 Sep 3, 2026 · 📍 Virtual</div><div class="card-body">Includes: How to earn, redeem, and track TIER credit</div>
-          <a class="btn btn-primary full" href="#events">RSVP / Apply to Attend</a></div><div class="card"><div class="row-between"><span class="pill pill-blue">Virtual</span></div>
+          <span class="reveal">RSVP / Apply to Attend ▾</span></summary>
+          <div class="xdetail">
+            <div class="xrow"><b>Date</b><span>Sep 3, 2026</span></div>
+            <div class="xrow"><b>Location</b><span>Virtual</span></div>
+            <div class="xrow"><b>Format</b><span>Virtual</span></div>
+            <div class="xrow"><b>Availability</b><span>Open</span></div>
+            <div class="xrow"><b>Includes</b><span>How to earn, redeem, and track TIER credit</span></div>
+            <p class="xnote">To reserve your place, confirm with your TAG rep or reply to your latest TAG event invitation. Seats for in-person events are limited and allocated first-come, first-served.</p>
+            <a class="btn btn-primary full" href="#messages">Request a place at this event</a>
+          </div></details><details class="card xcard"><summary><div class="row-between"><span class="pill pill-blue">Virtual</span></div>
           <div class="card-h">Holiday Sell-a-thon Kickoff</div><div class="card-sub">📅 Oct 1, 2026 · 📍 Virtual</div><div class="card-body">Includes: Launch of Q4 competition + bonus TIER multipliers</div>
-          <a class="btn btn-primary full" href="#events">RSVP / Apply to Attend</a></div></div>
+          <span class="reveal">RSVP / Apply to Attend ▾</span></summary>
+          <div class="xdetail">
+            <div class="xrow"><b>Date</b><span>Oct 1, 2026</span></div>
+            <div class="xrow"><b>Location</b><span>Virtual</span></div>
+            <div class="xrow"><b>Format</b><span>Virtual</span></div>
+            <div class="xrow"><b>Availability</b><span>Open</span></div>
+            <div class="xrow"><b>Includes</b><span>Launch of Q4 competition + bonus TIER multipliers</span></div>
+            <p class="xnote">To reserve your place, confirm with your TAG rep or reply to your latest TAG event invitation. Seats for in-person events are limited and allocated first-come, first-served.</p>
+            <a class="btn btn-primary full" href="#messages">Request a place at this event</a>
+          </div></details></div>
     <div class="card"><div class="sec-t">Your Event History</div><div class="past-row"><span>TAG Spring Roadshow — Scottsdale</span><span class="muted-sm">Mar 4, 2026</span></div><div class="past-row"><span>Dubai Luxury Webinar</span><span class="muted-sm">Jan 16, 2026</span></div><div class="past-row"><span>New Booking Platform Launch Webinar</span><span class="muted-sm">Jun 18, 2026</span></div></div></section><section class="page" id="profile"><div class="page-head"><h1>My Profile</h1></div>
     <div class="grid grid-2">
       <div class="card"><div class="sec-t">Personal Details</div><div class="sec-s">Keep this current so TAG HQ can reach you and route the right offers your way.</div>
@@ -769,6 +1033,30 @@ nav{flex:1;padding:12px;}
     </div></section>
   </main>
 </div>
+
+<script>
+(function(){
+  // Progressive enhancement: if JS runs, drive tabs with a class so it works
+  // even in viewers that ignore :target. Without JS, the :target CSS handles it.
+  document.body.classList.add('js-on');
+  var pages = document.querySelectorAll('.page');
+  var navs = document.querySelectorAll('.nav-item');
+  function show(id){
+    pages.forEach(function(p){ p.classList.toggle('active', p.id===id); });
+    navs.forEach(function(n){ n.classList.toggle('active-nav', n.getAttribute('href')==='#'+id); });
+  }
+  navs.forEach(function(n){
+    n.addEventListener('click', function(e){
+      e.preventDefault();
+      show(n.getAttribute('href').slice(1));
+    });
+  });
+  // honour an incoming hash, else default to profile
+  var start = location.hash ? location.hash.slice(1) : 'profile';
+  if(!document.getElementById(start)) start = 'profile';
+  show(start);
+})();
+</script>
 
 </body>
 </html>
